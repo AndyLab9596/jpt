@@ -33,7 +33,15 @@ class Server implements IServer {
     appRoutes(this.app);
   }
 
-  private setupGlobalError(): void {}
+  private setupGlobalError(): void {
+    this.app.all('*', (req, res, next) => {
+      res.status(404).json({
+        message: `The URL ${req.originalUrl} not found with method ${req.method}`
+      });
+
+      next();
+    });
+  }
 
   private listenServer() {
     const port = process.env.PORT || 5000;
