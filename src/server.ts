@@ -1,7 +1,7 @@
 import express, { Application } from 'express';
 
 interface IServer {
-  listenServer(): void;
+  start(): void;
 }
 
 class Server implements IServer {
@@ -10,7 +10,20 @@ class Server implements IServer {
     this.app = express();
   }
 
-  public listenServer() {
+  public start(): void {
+    this.setupMiddleware();
+    this.setupRoutes();
+    this.setupGlobalError();
+    this.listenServer();
+  }
+
+  private setupMiddleware(): void {}
+
+  private setupRoutes(): void {}
+
+  private setupGlobalError(): void {}
+
+  private listenServer() {
     const port = 5000;
     this.app.listen(port, () => {
       console.log(`Connected to server with port ${port}`);

@@ -3,7 +3,7 @@ import Server from './server';
 class JobApplication {
   public run(): void {
     const server = new Server();
-    server.listenServer();
+    server.start();
   }
 }
 
