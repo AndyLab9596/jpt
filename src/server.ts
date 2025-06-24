@@ -1,4 +1,5 @@
 import express, { Application } from 'express';
+import 'dotenv/config';
 
 interface IServer {
   start(): void;
@@ -24,7 +25,7 @@ class Server implements IServer {
   private setupGlobalError(): void {}
 
   private listenServer() {
-    const port = 5000;
+    const port = process.env.PORT || 5000;
     this.app.listen(port, () => {
       console.log(`Connected to server with port ${port}`);
     });
