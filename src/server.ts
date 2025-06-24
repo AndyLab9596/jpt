@@ -1,5 +1,6 @@
 import express, { Application } from 'express';
 import 'dotenv/config';
+import appRoutes from './globals/routes/appRoutes';
 
 interface IServer {
   start(): void;
@@ -18,9 +19,19 @@ class Server implements IServer {
     this.listenServer();
   }
 
-  private setupMiddleware(): void {}
+  private setupMiddleware(): void {
+    /**
+     * The middleware express.json() in Express.js is used to
+     * parse incoming JSON requests
+     * and put the parsed data in req.body.
+     */
 
-  private setupRoutes(): void {}
+    this.app.use(express.json());
+  }
+
+  private setupRoutes(): void {
+    appRoutes(this.app);
+  }
 
   private setupGlobalError(): void {}
 
