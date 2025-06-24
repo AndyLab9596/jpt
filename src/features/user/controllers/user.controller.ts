@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import prisma from '~/prisma';
 import { userService } from '../services/user.service';
+import { userCreateSchema } from '../schemas/user.schema';
 
 class UserController {
   public async getAll(req: Request, res: Response, next: NextFunction) {
