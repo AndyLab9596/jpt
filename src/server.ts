@@ -1,5 +1,6 @@
 import express, { Application, NextFunction, Request, Response } from 'express';
 import 'dotenv/config';
+import cookieParser from 'cookie-parser';
 import appRoutes from './globals/routes/appRoutes';
 import { CustomError, NotFoundException } from './globals/cores/error.core';
 import HTTP_STATUS from './globals/constants/http.constant';
@@ -29,6 +30,7 @@ class Server implements IServer {
      */
 
     this.app.use(express.json());
+    this.app.use(cookieParser());
   }
 
   private setupRoutes(): void {
